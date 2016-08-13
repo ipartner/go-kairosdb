@@ -35,10 +35,10 @@ func (q *QueryMetric) MarshalJSON() ([]byte, error) {
 
     s := struct {
         Name        string              `json:"name"`
-        GroupBy     []*GroupBy          `json:"group_by"`
-        Tags        map[string][]string `json:"tags"`
+        GroupBy     []*GroupBy          `json:"group_by,omitempty"`
+        Tags        map[string][]string `json:"tags,omitempty"`
         Aggregators []*Aggregator       `json:"aggregators,omitempty"`
-        Limit       int64               `json:"limit"`
+        Limit       int64               `json:"limit,omitempty"`
     }{
         Name:        q.Name,
         GroupBy:     q.GroupBy,

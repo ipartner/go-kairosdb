@@ -11,10 +11,14 @@ all: build
 fmt:
 	@gofmt -w ./
 
+deps:
+	docker-compose down
+	docker-compose up -d
+
 proto:
 	protoc --proto_path=./kairosdb -I=./vendor --go_out=plugins=grpc:./kairosdb ./kairosdb/*.proto
 
-build: proto
+build: deps proto
 	go test -v  ./client ./kairosdb
 	go build ./client ./kairosdb
 

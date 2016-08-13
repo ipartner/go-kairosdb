@@ -1,0 +1,12 @@
+version: '2'
+services:
+    kairosdb:
+        image: dancompton/kairosdb:v1.1.1
+        ports:
+            - "8080:8080"
+        container_name: go-kairosdb_kairosdb
+    wait:
+        image: aanand/wait
+        links:
+            - kairosdb:go-kairosdb_kairosdb
+

@@ -36,7 +36,6 @@ type KDBClient struct {
 }
 
 // Returns a new http client
-// TODO: reuse transports
 func New(addr string) Client {
     return &KDBClient{
         kdbAddress: addr,
@@ -60,6 +59,8 @@ func (s *KDBClient) Query(in *kairosdb.QueryMetricsRequest) (*kairosdb.QueryMetr
     }
     defer resp.Body.Close()
     body, _ := ioutil.ReadAll(resp.Body)
+
+    log.Debugf("received query response: %v", string(body))
 
     gr := &kairosdb.QueryMetricsResponse{}
     err = json.Unmarshal(body, &gr)

@@ -18,7 +18,6 @@ import (
     "github.com/dan-compton/go-kairosdb/kairosdb"
 )
 
-// TODO: move my grpc stuff in and support it
 type Client interface {
     Query(in *kairosdb.QueryMetricsRequest) (*kairosdb.QueryMetricsResponse, error)
 }

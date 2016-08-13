@@ -16,7 +16,7 @@
 syntax = "proto3";
 package kairosdb;
 
-import "types.proto";
+import "helper_types.proto";
 option go_package = "kairosdb";
 
 // Represents a kairosdb datapoint
