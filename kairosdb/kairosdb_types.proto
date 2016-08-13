@@ -39,6 +39,7 @@ message Aggregator {
     string name = 1;
     bool align_sampling = 2;
     Sampling sampling = 3;
+    bool align_start_time = 4;
 }
 
 // Represents the group_property in the request
@@ -57,6 +58,7 @@ message QueryMetric {
     repeated GroupBy group_by = 3;
     repeated Aggregator aggregators = 4;
     int64 limit = 5;
+    string time_zone = 6;
 }
 message Result {
     string name = 1;
@@ -111,8 +113,7 @@ message HealthStatusResponse{
     repeated string results = 1;
 }
 
-
-service KairosDBClient {
+service KairosDB {
     rpc ListMetricNames(ListMetricNamesRequest) returns (ListMetricNamesResponse);
     rpc ListTagNames(ListTagNamesRequest) returns (ListTagNamesResponse);
     rpc ListTagValues(ListTagValuesRequest) returns (ListTagValuesResponse);
