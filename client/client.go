@@ -23,4 +23,6 @@ type Client interface {
     ListTagNames() (*kairosdb.ListTagNamesResponse, error)
     ListTagValues() (*kairosdb.ListTagValuesResponse, error)
     Query(in *kairosdb.QueryMetricsRequest) (*kairosdb.QueryMetricsResponse, error)
+    HealthStatus() (*kairosdb.HealthStatusResponse, error)
+    HealthCheck() (*kairosdb.HealthCheckResponse, error)
 }

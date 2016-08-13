@@ -23,7 +23,7 @@ func TestQueryMetrics(t *testing.T) {
 
     resp, err := testHttpClient.Query(req)
     if err != nil {
-        t.Fatalf("client returned err%s", err.Error())
+        t.Fatalf("client returned err: %s", err.Error())
     }
     if len(resp.Errors) > 0{
         t.Fatalf("kairosdb return err: %v", resp.Errors)
@@ -33,7 +33,7 @@ func TestQueryMetrics(t *testing.T) {
 func TestListMetricNames(t *testing.T){
     resp, err := testHttpClient.ListMetricNames()
     if err != nil {
-        t.Fatalf("client return err%s", err.Error())
+        t.Fatalf("client return err: %s", err.Error())
     }
     if len(resp.Results) == 0 {
         t.Fatal("kairosdb should have at least default metrics like kairosdb.jvm.free_memory, got none.")
@@ -43,13 +43,33 @@ func TestListMetricNames(t *testing.T){
 func TestListTagNames(t *testing.T){
     _, err := testHttpClient.ListTagNames()
     if err != nil {
-        t.Fatalf("client returned err%s", err.Error())
+        t.Fatalf("client returned err: %s", err.Error())
     }
 }
 
 func TestListTagValues(t *testing.T){
     _, err := testHttpClient.ListTagValues()
     if err != nil {
-        t.Fatalf("client returned err%s", err.Error())
+        t.Fatalf("client returned err: %s", err.Error())
+    }
+}
+
+func TestHealthStatus(t *testing.T){
+    resp, err := testHttpClient.HealthStatus()
+    if err != nil {
+        t.Fatalf("client return err: %s", err.Error())
+    }
+    if len(resp.Results) == 0 {
+        t.Fatal("kairosdb at least some status information, got none.")
+    }
+}
+
+func TestHealthChecks(t *testing.T){
+    resp, err := testHttpClient.HealthCheck()
+    if err != nil {
+        t.Fatalf("client returned err: %s", err.Error())
+    }
+    if resp.Healthy != true {
+        t.Fatalf("kairosdb not healthy")
     }
 }

@@ -120,3 +120,13 @@ func (d *Datapoint) UnmarshalJSON(b []byte) error {
     }
     return nil
 }
+
+func (h *HealthStatusResponse) UnmarshalJSON(b []byte) error {
+    s := []string{}
+    err := json.Unmarshal(b, &s)
+    if err != nil {
+        return err
+    }
+    h.Results = s
+    return nil
+}

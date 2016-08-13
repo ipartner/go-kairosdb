@@ -26,6 +26,10 @@ It has these top-level messages:
 	ListTagNamesResponse
 	ListTagValuesRequest
 	ListTagValuesResponse
+	HealthCheckRequest
+	HealthCheckResponse
+	HealthStatusRequest
+	HealthStatusResponse
 */
 package kairosdb
 

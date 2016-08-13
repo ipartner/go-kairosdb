@@ -101,6 +101,15 @@ message ListTagValuesResponse {
     repeated string results = 1;
 }
 
+message HealthCheckRequest{}
+message HealthCheckResponse{
+    bool healthy = 1;
+}
+
+message HealthStatusRequest{}
+message HealthStatusResponse{
+    repeated string results = 1;
+}
 
 
 service KairosDBClient {
@@ -108,4 +117,6 @@ service KairosDBClient {
     rpc ListTagNames(ListTagNamesRequest) returns (ListTagNamesResponse);
     rpc ListTagValues(ListTagValuesRequest) returns (ListTagValuesResponse);
     rpc QueryMetrics(QueryMetricsRequest) returns (QueryMetricsResponse);
+    rpc HealthStatus(HealthStatusRequest) returns (HealthStatusResponse);
+    rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse);
 }
