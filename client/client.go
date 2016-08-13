@@ -19,5 +19,8 @@ import (
 )
 
 type Client interface {
+    ListMetricNames() (*kairosdb.ListMetricNamesResponse, error)
+    ListTagNames() (*kairosdb.ListTagNamesResponse, error)
+    ListTagValues() (*kairosdb.ListTagValuesResponse, error)
     Query(in *kairosdb.QueryMetricsRequest) (*kairosdb.QueryMetricsResponse, error)
 }

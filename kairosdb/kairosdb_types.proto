@@ -85,6 +85,27 @@ message QueryMetricsResponse {
     repeated string errors = 5;
 }
 
-service KairosDB {
+
+message ListMetricNamesRequest {}
+message ListMetricNamesResponse {
+    repeated string results = 1;
+}
+
+message ListTagNamesRequest {}
+message ListTagNamesResponse {
+    repeated string results = 1;
+}
+
+message ListTagValuesRequest{}
+message ListTagValuesResponse {
+    repeated string results = 1;
+}
+
+
+
+service KairosDBClient {
+    rpc ListMetricNames(ListMetricNamesRequest) returns (ListMetricNamesResponse);
+    rpc ListTagNames(ListTagNamesRequest) returns (ListTagNamesResponse);
+    rpc ListTagValues(ListTagValuesRequest) returns (ListTagValuesResponse);
     rpc QueryMetrics(QueryMetricsRequest) returns (QueryMetricsResponse);
 }

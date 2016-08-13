@@ -20,6 +20,12 @@ It has these top-level messages:
 	Query
 	QueryMetricsRequest
 	QueryMetricsResponse
+	ListMetricNamesRequest
+	ListMetricNamesResponse
+	ListTagNamesRequest
+	ListTagNamesResponse
+	ListTagValuesRequest
+	ListTagValuesResponse
 */
 package kairosdb
 

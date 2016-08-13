@@ -27,6 +27,9 @@ import (
 )
 
 const (
+    KdbListMetricNames = "api/v1/metricnames"
+    KdbListTagNames = "api/v1/tagnames"
+    KdbListTagValues = "api/v1/tagvalues"
     KdbQuery = "api/v1/datapoints/query"
 )
 
@@ -40,6 +43,64 @@ func New(addr string) Client {
     return &KDBClient{
         kdbAddress: addr,
     }
+}
+
+// List Metric Names
+func (s *KDBClient) ListMetricNames() (*kairosdb.ListMetricNamesResponse, error) {
+    resp, err := http.Get(fmt.Sprintf("%s/%s", s.kdbAddress, KdbListMetricNames))
+    if err != nil {
+        log.WithError(err).Fatalf("couldn't query kairosdb server")
+    }
+    defer resp.Body.Close()
+    body, _ := ioutil.ReadAll(resp.Body)
+
+    log.Debugf("received list metric names response: %v", string(body))
+
+    gr := &kairosdb.ListMetricNamesResponse{}
+    err = json.Unmarshal(body, &gr)
+    if err != nil {
+        return nil, err
+    }
+
+    return gr, nil
+}
+
+// List Tag Names
+func (s *KDBClient) ListTagNames() (*kairosdb.ListTagNamesResponse, error) {
+    resp, err := http.Get(fmt.Sprintf("%s/%s", s.kdbAddress, KdbListTagNames))
+    if err != nil {
+        log.WithError(err).Fatalf("couldn't query kairosdb server")
+    }
+    defer resp.Body.Close()
+    body, _ := ioutil.ReadAll(resp.Body)
+
+    log.Debugf("received list tag names response: %v", string(body))
+
+    gr := &kairosdb.ListTagNamesResponse{}
+    err = json.Unmarshal(body, &gr)
+    if err != nil {
+        return nil, err
+    }
+    return gr, nil
+}
+
+// List Tag Value
+func (s *KDBClient) ListTagValues() (*kairosdb.ListTagValuesResponse, error) {
+    resp, err := http.Get(fmt.Sprintf("%s/%s", s.kdbAddress, KdbListTagValues))
+    if err != nil {
+        log.WithError(err).Fatalf("couldn't query kairosdb server")
+    }
+    defer resp.Body.Close()
+    body, _ := ioutil.ReadAll(resp.Body)
+
+    log.Debugf("received list tag values response: %v", string(body))
+
+    gr := &kairosdb.ListTagValuesResponse{}
+    err = json.Unmarshal(body, &gr)
+    if err != nil {
+        return nil, err
+    }
+    return gr, nil
 }
 
 // Queries the kdb server via the QueryMetricsRequest protobuf generate type
