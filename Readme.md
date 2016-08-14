@@ -15,30 +15,60 @@ Going down the list in the Rest API section in the docs:
     - Supported
         * Format containing datapoints array like following example:
         ```
-          // do this
-          {
-              "name": "archive_file_tracked",
-              "datapoints": [[1359788400000, 123], [1359788300000, 13.2], [1359788410000, 23.1]],
-              "tags": {
-                  "host": "server1",
-                "data_center": "DC1"
-              },
-              "ttl": 300
-          },
+            // do this
+            {
+                "name": "archive_file_tracked",
+                "datapoints": [[1359788400000, 1], [1359788300000, 2], [1359788410000, 3]],
+                "tags": {
+                    "host": "server1",
+                    "data_center": "DC1"
+                 },
+                 "ttl": 300
+            },
+
+            // like this:
+            &kairosdb.AddDatapointsRequest{
+                Metrics: []*kairosdb.Metric{
+                    &kairosdb.Metric{
+                        Name: "some",
+                        Datapoints: []*kairosdb.Datapoint{
+                            &kairosdb.Datapoint{
+                                Timestamp: 1359786400000,
+                                Value: 1,
+                            },
+                            &kairosdb.Datapoint{
+                                Timestamp: 1471218571000,
+                                Value: 2,
+                            },
+                            &kairosdb.Datapoint{
+                                Timestamp: 1471304971000,
+                                Value: 3,
+                            },
+                    },
+                    Tags: map[string]string{
+                        "atag": "is here",
+                    },
+                },
+            },
+        }
+        _, err := testHttpClient.AddDatapoints(req)
+        if err != nil {
+            panic(err)  // or w/e
+        }
         ```
     - Unsupported
         * Format wherein there is no datapoints array like:
-        ```
-            // dont do this
-            {
-                  "name": "archive_file_search",
-                  "timestamp": 1359786400000,
-                  "value": 321,
-                  "tags": {
-                      "host": "server2"
-                  }
-            }
-        ```
+            ```
+                // we dont do support this format
+                {
+                    "name": "archive_file_search",
+                    "timestamp": 1359786400000,
+                    "value": 321,
+                    "tags": {
+                       "host": "server2"
+                    }
+                }
+            ```
 2. Delete Data Points
     - Supported
 3. Delete Metric
