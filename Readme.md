@@ -35,7 +35,7 @@ Going down the list in the Rest API section in the docs:
 
             // .... 
 
-            testHttpClient := client client.New("http://localhost:8080")
+            testHttpClient := kclient.New("http://localhost:8080")
 
             // like this:
             req := &kairosdb.AddDatapointsRequest{
