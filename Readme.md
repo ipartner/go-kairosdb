@@ -25,7 +25,9 @@ Going down the list in the Rest API section in the docs:
                  },
                  "ttl": 300
             },
+       ```
 
+        ```
             // like this:
             &kairosdb.AddDatapointsRequest{
                 Metrics: []*kairosdb.Metric{
@@ -56,19 +58,6 @@ Going down the list in the Rest API section in the docs:
             panic(err)  // or w/e
         }
         ```
-    - Unsupported
-        * Format wherein there is no datapoints array like:
-            ```
-                // we dont do support this format
-                {
-                    "name": "archive_file_search",
-                    "timestamp": 1359786400000,
-                    "value": 321,
-                    "tags": {
-                       "host": "server2"
-                    }
-                }
-            ```
 2. Delete Data Points
     - Supported
 3. Delete Metric
