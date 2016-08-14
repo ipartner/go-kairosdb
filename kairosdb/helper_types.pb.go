@@ -18,6 +18,11 @@ It has these top-level messages:
 	QueryMetric
 	Result
 	Query
+	Metric
+	AddDatapointsRequest
+	AddDatapointsResponse
+	DeleteDatapointsRequest
+	DeleteDatapointsResponse
 	QueryMetricsRequest
 	QueryMetricsResponse
 	ListMetricNamesRequest

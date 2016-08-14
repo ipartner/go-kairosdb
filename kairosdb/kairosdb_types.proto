@@ -60,6 +60,7 @@ message QueryMetric {
     int64 limit = 5;
     string time_zone = 6;
 }
+
 message Result {
     string name = 1;
     repeated GroupBy group_by = 2;
@@ -70,6 +71,36 @@ message Result {
 // Represents a single set of results for a given Query
 message Query {
     repeated Result results = 1;
+}
+
+message Metric {
+    string name = 1;
+    repeated Datapoint datapoints = 2;
+    map<string, string> tags = 3;
+    int64 ttl = 4;
+    string type = 5;
+}
+
+// Request to Add data points to metric or metrics
+message AddDatapointsRequest {
+    repeated Metric metrics = 1;
+}
+
+message AddDatapointsResponse {
+    repeated string errors = 1;
+}
+
+
+// Request to delete data points
+message DeleteDatapointsRequest {
+    repeated QueryMetric metrics = 1;
+    int64 cache_time = 2;
+    int64 start_absolute = 3;
+    int64 end_absolute = 4;
+}
+
+message DeleteDatapointsResponse {
+    repeated string errors = 1;
 }
 
 // Reprents a QueryMetrics request to kairosdb
@@ -120,4 +151,6 @@ service KairosDB {
     rpc QueryMetrics(QueryMetricsRequest) returns (QueryMetricsResponse);
     rpc HealthStatus(HealthStatusRequest) returns (HealthStatusResponse);
     rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse);
+    rpc AddDatapoints(AddDatapointsRequest) returns (AddDatapointsResponse);
+    rpc DeleteDatapoints(DeleteDatapointsRequest) returns (DeleteDatapointsResponse);
 }

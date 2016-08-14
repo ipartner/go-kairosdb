@@ -25,4 +25,6 @@ type Client interface {
     Query(in *kairosdb.QueryMetricsRequest) (*kairosdb.QueryMetricsResponse, error)
     HealthStatus() (*kairosdb.HealthStatusResponse, error)
     HealthCheck() (*kairosdb.HealthCheckResponse, error)
+    AddDatapoints(in *kairosdb.AddDatapointsRequest) (*kairosdb.AddDatapointsResponse, error)
+    DeleteDatapoints(in *kairosdb.DeleteDatapointsRequest) (*kairosdb.DeleteDatapointsResponse, error)
 }

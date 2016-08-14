@@ -78,6 +78,10 @@ func (q *QueryMetric) UnmarshalJSON(b []byte) error {
     return nil
 }
 
+func (d *Datapoint) MarshalJSON() ([]byte,error) {
+    return json.Marshal([]interface{}{d.Timestamp, d.Value})
+}
+
 //Unmarshal kairosdb json datapoint into go type
 func (d *Datapoint) UnmarshalJSON(b []byte) error {
     var l []interface{}

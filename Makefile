@@ -14,6 +14,7 @@ fmt:
 deps:
 	docker-compose down
 	docker-compose up -d
+	./wait-for-kairosdb.sh http://localhost:8080/api/v1/health/check
 
 proto:
 	protoc --proto_path=./kairosdb -I=./vendor --go_out=plugins=grpc:./kairosdb ./kairosdb/*.proto
