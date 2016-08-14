@@ -28,8 +28,17 @@ Going down the list in the Rest API section in the docs:
        ```
 
         ```
+            import (
+                kclient "github.com/dan-compton/go-kairosdb/client"
+                "github.com/dan-compton/go-kairosdb/kairosdb"
+             )
+
+            // .... 
+
+            testHttpClient := client client.New("http://localhost:8080")
+
             // like this:
-            &kairosdb.AddDatapointsRequest{
+            req := &kairosdb.AddDatapointsRequest{
                 Metrics: []*kairosdb.Metric{
                     &kairosdb.Metric{
                         Name: "some",
