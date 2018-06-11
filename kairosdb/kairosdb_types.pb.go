@@ -48,6 +48,7 @@ type Aggregator struct {
 	AlignSampling  bool      `protobuf:"varint,2,opt,name=align_sampling,json=alignSampling" json:"align_sampling,omitempty"`
 	Sampling       *Sampling `protobuf:"bytes,3,opt,name=sampling" json:"sampling,omitempty"`
 	AlignStartTime bool      `protobuf:"varint,4,opt,name=align_start_time,json=alignStartTime" json:"align_start_time,omitempty"`
+	Percentile     *string   `protobuf:"bytes,5,opt,name=percentile" json:"percentile,omitempty"`
 }
 
 func (m *Aggregator) Reset()                    { *m = Aggregator{} }

@@ -15,16 +15,16 @@
 package client
 
 import (
-    "github.com/dan-compton/go-kairosdb/kairosdb"
+	"github.com/ipartner/go-kairosdb/kairosdb"
 )
 
 type Client interface {
-    ListMetricNames() (*kairosdb.ListMetricNamesResponse, error)
-    ListTagNames() (*kairosdb.ListTagNamesResponse, error)
-    ListTagValues() (*kairosdb.ListTagValuesResponse, error)
-    Query(in *kairosdb.QueryMetricsRequest) (*kairosdb.QueryMetricsResponse, error)
-    HealthStatus() (*kairosdb.HealthStatusResponse, error)
-    HealthCheck() (*kairosdb.HealthCheckResponse, error)
-    AddDatapoints(in *kairosdb.AddDatapointsRequest) (*kairosdb.AddDatapointsResponse, error)
-    DeleteDatapoints(in *kairosdb.DeleteDatapointsRequest) (*kairosdb.DeleteDatapointsResponse, error)
+	ListMetricNames() (*kairosdb.ListMetricNamesResponse, error)
+	ListTagNames() (*kairosdb.ListTagNamesResponse, error)
+	ListTagValues() (*kairosdb.ListTagValuesResponse, error)
+	Query(in *kairosdb.QueryMetricsRequest) (*kairosdb.QueryMetricsResponse, error)
+	HealthStatus() (*kairosdb.HealthStatusResponse, error)
+	HealthCheck() (*kairosdb.HealthCheckResponse, error)
+	AddDatapoints(in *kairosdb.AddDatapointsRequest) (*kairosdb.AddDatapointsResponse, error)
+	DeleteDatapoints(in *kairosdb.DeleteDatapointsRequest) (*kairosdb.DeleteDatapointsResponse, error)
 }
